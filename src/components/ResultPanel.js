@@ -16,8 +16,8 @@ const ResultPanel = ({ result, isLoading, isError }) => {
   
     return (
       <div className="result-panel">
-        <p>{result}</p>
-        {result.image && <Image src={result.image } />}
+        <p>{result.file_name}</p>
+        {/* {result.image && <Image src={result.image } />} */}
       </div>
     );
   }

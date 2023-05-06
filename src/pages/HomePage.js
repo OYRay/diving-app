@@ -17,27 +17,38 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   
-  async function uploadVideo(videoFile) {
+  async function uploadVideo(blobUrl) {
+    const videoFile = await fetch(blobUrl);
+    const file = new File([await videoFile.blob()], "uploaded_video.mp4", { type: "video/mp4" });
 
     setIsLoading(true);
     setIsError(false);
-    setVideoSrc(videoFile);
+    setVideoSrc(blobUrl);
 
     const formData = new FormData();
-    formData.append("video", videoFile);
-  
+    formData.append("video", file);
+    console.log("Video file:", file);
+
+    // fetch backend
     try {
-      const response = await fetch("https://your-backend-url.com/upload", {
+      console.log("Uploading video");
+      const response = await fetch("http://localhost:5000/videoupload", {
         method: "POST",
         body: formData,
       });
   
       if (!response.ok) {
-        throw new Error("Error uploading video");
+        setIsLoading(false)
+        setIsError(true) 
+        console.log("Error getting response");
       }
-  
+      
+      // wait response
       const result = await response.json();
+      setIsLoading(false)
+      setResponse(result)
       console.log("Video uploaded successfully:", result);
+
     } catch (error) {
       console.error("Error:", error);
     }
