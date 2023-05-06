@@ -45,6 +45,12 @@ const HomePage = () => {
       
       // wait response
       const result = await response.json();
+      if (result == null) {
+        setIsError(true)
+        setIsLoading(false)
+        console.log("Get null response");
+      }
+      
       setIsLoading(false)
       setResponse(result)
       console.log("Video uploaded successfully:", result);
@@ -69,7 +75,7 @@ const HomePage = () => {
       </Row>
 
       {videoSrc ? (
-        <Row gutter={8} justify={"space-around"} align={"top"} style={{paddingTop: 50}}>
+        <Row gutter={2} justify={"space-around"} align={"top"} style={{paddingTop: 80, paddingLeft: "5%", paddingRight: "5%"}} >
           <Col xs={20} sm={10}>
             <Card style={{padding:0, margin:0}}> 
               <VideoPreviewer src={videoSrc} />

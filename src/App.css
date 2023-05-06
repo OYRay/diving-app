@@ -124,3 +124,24 @@
   font-size: 60px;
   color: var(--blue);
 }
+
+
+/* tableStyles.css */
+.custom-row .ant-table-cell {
+  background-color: #e9edf7;
+  /* border: 1px solid #d9d9d9; */
+  font-size: 14px;
+  padding: 10px !important;
+}
+/* Add this rule to target the header cells */
+.ant-table-thead > tr > th {
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  padding: 10px !important;
+  background-color: #adbee4 !important;
+}
+/* Add this rule with your custom class name
+.custom-header .ant-table-cell {
+  background-color: var(--blue);
+} */
