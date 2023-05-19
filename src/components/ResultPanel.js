@@ -2,7 +2,6 @@ import React from "react";
 import { Typography, Image, Card, Table, Row, Col} from "antd";
 import Spinner from "./Spinner";
 
-import sample_img from "../data/sample.png";
 import '../App.css'
 
 const { Title } = Typography;
@@ -67,7 +66,7 @@ const ResultPanel = ({ result, isLoading, isError }) => {
                     headerClassName="custom-header"/>
           </Col>
           <Col xs={20} sm={8} style={{padding:0}}>
-            <Image src= {sample_img} />
+          <Image src={`data:image/jpg;base64, ${result.EntryImage}`} alt="From server" />
           </Col>
         </Row>
       </div>
